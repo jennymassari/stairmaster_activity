@@ -20,9 +20,33 @@
 # 1. 1 step + 1 step + 1 step
 # 2. 1 step + 2 steps
 # 3. 2 steps + 1 step
- 
-def climb_stairs(n):
-    pass
+
+# Fibonachi solution
+# def climb_stairs(n):
+#     if n <= 3:
+#         return n
+    
+#     return climb_stairs(n-1) + climb_stairs(n-2)
+
+# Memoization solution:
+
+def climb_stairs(n, memo = None):
+    # memoization dictionary
+    memo = {} if memo is None else memo
+
+    # look it up
+    if n in memo:
+        return memo[n]
+    
+    if n <= 3:
+        return n
+    # add memo to recursive calls
+    # turn into a variable so memo can be changed
+    result = climb_stairs(n-1, memo) + climb_stairs(n-2, memo)
+    memo[n] = result
+
+    return result
+    
 
     # at each step, how many choices do we have?
     # given each choice, how many combinations of steps are left?
